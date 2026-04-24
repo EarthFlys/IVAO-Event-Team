@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="image/TH_Logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVAO TH Event Dashboard System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Mitr:wght@200;300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="image/TH_Logo.png" alt="IVAO Thailand" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%228%22 fill=%22%231e88e5%22/%3E%3Ctext x=%2220%22 y=%2228%22 text-anchor=%22middle%22 fill=%2２white%2２ font-size=%2２18%２ font-family=%2２Arial%２%3EIV%3C/text%3E%3C/svg%3E'">
+            <div class="nav-logo-text">
+                IVAO Thailand
+                <small>Dashboard System</small>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <h3>📋 Menu</h3>
+            <a href="#" class="nav-link active" data-section="dashboard">
+                <span class="nav-icon">📌</span> Dashboard
+            </a>
+            <a href="#" class="nav-link" data-section="tasks">
+                <span class="nav-icon">✅</span> Task Board
+            </a>
+            <a href="#" class="nav-link" data-section="calendar">
+                <span class="nav-icon">📅</span> Calendar
+            </a>
+            <a href="#" class="nav-link" data-section="team">
+                <span class="nav-icon">👥</span> Team Workload
+            </a>
+            <a href="#" class="nav-link" data-section="pipeline">
+                <span class="nav-icon">🪙</span> Token
+            </a>
+        </div>
+
+        <div class="nav-section">
+            <h3>🔗 Quick Links</h3>
+            <a href="https://www.ivao.aero/" target="_blank" class="nav-link">
+                <span class="nav-icon">🌐</span> IVAO HQ
+            </a>
+            <a href="https://webeye.ivao.aero/" target="_blank" class="nav-link">
+                <span class="nav-icon">📡</span> WebEye
+            </a>
+
+            <a href="https://wiki.ivao.aero/" target="_blank" class="nav-link">
+                <span class="nav-icon">📚</span> IVAO Wiki
+            </a>
+
+            <a href="https://calendar.ivao.aero/" target="_blank" class="nav-link">
+                <span class="nav-icon">🛩️</span> Calendar
+            </a>    
+
+            <a href="https://traffic-th.vercel.app/" target="_blank" class="nav-link">
+                <span class="nav-icon">📡</span> Tracker
+            </a>    
+        </div>
+
+<div class="nav-footer">
+    <div class="dev-info">
+        <!-- เปลี่ยนจาก div เป็น img -->
+        <img src="image/684950.jpg" alt="Developer" class="dev-avatar">
+        <div>
+            <div class="dev-name">VID 684950</div>
+            <div class="dev-role">Developer • Thailand</div>
+        </div>
+    </div>
+</div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-content">
+        <div class="app-shell">
+            <header class="hero">
+                <div class="hero__text">
+                    <p class="badge">✈️ IVAO Thailand Event Dashboard System</p>
+                    <h1>Mission Planner & Team Dashboard</h1>
+                    <p>Manage projects in real-time, with clear role assignments, a calendar, and progress tracking.</p>
+                </div>
+                <div class="hero__meta">
+                    <div>
+                        <span>🕒 อัปเดตล่าสุด</span>
+                        <strong id="lastUpdated">-</strong>
+                    </div>
+                    <div>
+                        <span>📊 ความคืบหน้ารวม</span>
+                        <strong id="overallProgressLabel">0%</strong>
+                    </div>
+                </div>
+            </header>
+
+            <main class="layout-grid">
+                <!-- Task Board Section -->
+                <section class="card" id="tasksSection" aria-labelledby="taskHeading">
+                    <div class="card__header">
+                        <h2 id="taskHeading">📋 Task Board</h2>
+                        <button id="addTaskBtn" class="btn">+ เพิ่มงาน</button>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>งาน</th>
+                                    <th>ผู้รับผิดชอบ</th>
+                                    <th>กำหนดส่ง</th>
+                                    <th>สถานะ</th>
+                                    <th>ความคืบหน้า</th>
+                                    <th>จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="taskTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="emptyTaskMessage" style="display:none; text-align:center; padding:2rem; color: var(--text-sub);">
+                        📭 ยังไม่มีงาน - กด "+ เพิ่มงาน" เพื่อเริ่มต้น
+                    </div>
+                </section>
+
+                <!-- Calendar Section -->
+                <section class="card" id="calendarSection" aria-labelledby="calendarHeading">
+                    <div class="card__header">
+                        <h2 id="calendarHeading">📅 Calendar</h2>
+                        <div class="calendar-controls">
+                            <button id="prevMonthBtn" class="btn btn--ghost">◀</button>
+                            <span id="calendarTitle"></span>
+                            <button id="nextMonthBtn" class="btn btn--ghost">▶</button>
+                        </div>
+                    </div>
+                    <div id="calendarGrid" class="calendar-grid"></div>
+                    <h4 style="margin-top:1rem; font-size:0.9rem;">📌 งานที่ใกล้ถึงกำหนด</h4>
+                    <ul id="upcomingList" class="upcoming-list"></ul>
+                </section>
+
+                <!-- Team Workload Section -->
+                <section class="card" id="teamSection" aria-labelledby="teamHeading">
+                    <div class="card__header">
+                        <h2 id="teamHeading">👥 Team Workload</h2>
+                    </div>
+                    <div id="teamSplit" class="split-grid"></div>
+                </section>
+
+                <!-- Pipeline Section -->
+                <section class="card" id="pipelineSection" aria-labelledby="pipelineHeading">
+                    <div class="card__header">
+                        <h2 id="pipelineHeading">🪙 Token and Upcoming Event</h2>
+                    </div>
+                    <div id="pipelineList" class="pipeline"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Task Dialog (Add/Edit) -->
+    <dialog id="taskDialog" class="task-dialog">
+        <form id="taskForm" method="dialog">
+            <h3 id="dialogTitle">➕ เพิ่มงานใหม่</h3>
+            <input type="hidden" name="taskId" id="taskId" />
+            <label>ชื่องาน <input name="title" id="taskTitle" required maxlength="90" placeholder="เช่น ออกแบบฐานข้อมูล" /></label>
+            <label>ผู้รับผิดชอบ <input name="owner" id="taskOwner" required maxlength="40" placeholder="เช่น Backend Team" /></label>
+            <label>กำหนดส่ง <input name="dueDate" id="taskDueDate" type="date" required /></label>
+            <label>ความคืบหน้า (%) <input name="progress" id="taskProgress" type="number" min="0" max="100" required value="0" /></label>
+            <label>สถานะ
+                <select name="status" id="taskStatus" required>
+                    <option value="Planned">📝 Planned</option>
+                    <option value="In Progress">🚀 In Progress</option>
+                    <option value="Blocked">⛔ Blocked</option>
+                    <option value="Done">✅ Done</option>
+                </select>
+            </label>
+            <menu>
+                <button value="cancel" class="btn btn--ghost" type="button" id="cancelDialogBtn">ยกเลิก</button>
+                <button value="default" class="btn" type="submit">💾 บันทึกงาน</button>
+            </menu>
+        </form>
+    </dialog>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,761 @@
+/* ===== CSS Variables ===== */
+:root {
+    --bg-main: #3C55AC;
+    --bg-card: #3C55AC;
+    --text-main: #1a2639;
+    --text-sub: #D7D7DC;
+    --accent: #1e88e5;
+    --accent-2: #0d47a1;
+    --ok: #2e7d32;
+    --warn: #f57c00;
+    --danger: #d32f2f;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --radius: 16px;
+    --nav-width: 260px;
+    --text-blue: #3C55AC;
+}
+
+/* ===== Reset ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Sarabun', 'Kanit', 'Mitr' , 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #081c63 0%, #0D2C99 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    /* จัดให้ body เป็น flex container */
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    width: var(--nav-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, #3C55AC 0%, #0D2C99 100%);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    /* จัดการ padding ให้สมดุล */
+    padding: 1.8rem 1.2rem;
+    z-index: 100;
+    border-right: 1px solid rgba(30, 136, 229, 0.08);
+    overflow-y: auto;
+    /* จัดให้เนื้อหาใน navbar อยู่ตรงกลางแนวตั้ง */
+    justify-content: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.nav-logo img {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.nav-logo-text {
+    font-family: 'Mitr', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-sub);
+    line-height: 1.2;
+}
+
+.nav-logo-text small {
+    display: block;
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: var(--text-sub);
+    letter-spacing: 0.5px;
+}
+
+.nav-section {
+    margin-top: 0.5rem;
+    /* จัดให้อยู่ตรงกลาง */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-section h3 {
+    font-family: 'Mitr', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-sub);
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
+    align-self: flex-start;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.65rem 0.75rem;
+    border-radius: 10px;
+    color: var(--text-sub);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    margin-bottom: 0.15rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.nav-icon {
+    width: 20px;
+    text-align: center;
+    font-style: normal;
+    font-size: 1rem;
+}
+
+.nav-link:hover {
+    background: rgba(30, 136, 229, 0.08);
+    color: var(--accent);
+}
+
+.nav-link.active {
+    font-weight: 600;
+    background: rgba(30, 136, 229, 0.12);
+    color: var(--accent);
+}
+
+.nav-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    /* จัดให้อยู่ตรงกลาง */
+    display: flex;
+    justify-content: center;
+}
+
+.nav-footer .dev-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-footer .dev-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 2px 8px rgba(30, 136, 229, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.nav-footer .dev-avatar:hover {
+    transform: scale(1.1);
+}
+
+.nav-footer .dev-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-sub);
+}
+
+.nav-footer .dev-role {
+    font-size: 0.7rem;
+    color: var(--text-sub);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-left: var(--nav-width);
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.app-shell {
+    width: 100%;
+    max-width: 1200px;
+    /* จัดให้อยู่ตรงกลางแนวนอน */
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+}
+
+/* ===== HEADER ===== */
+.hero {
+    background: linear-gradient(105deg, #3C55AC 0%, #0D2C99 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(30, 136, 229, 0.1);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 1.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(30, 136, 229, 0.08);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+    margin: 0.2rem 0;
+    font-family: 'Kanit', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: var(--text-sub);
+    font-weight: 600;
+}
+
+.hero p {
+    margin: 0;
+    color: var(--text-sub);
+    font-size: 0.95rem;
+}
+
+.hero__meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero__meta div {
+    background: rgba(30, 136, 229, 0.04);
+    border-radius: 14px;
+    padding: 0.9rem 1.2rem;
+    display: grid;
+    gap: 0.2rem;
+    min-width: 150px;
+}
+
+.hero__meta span {
+    color: var(--text-sub);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.hero__meta strong {
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+/* ===== LAYOUT GRID ===== */
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 1.2rem;
+    /* จัดให้ grid อยู่ตรงกลางเสมอ */
+    justify-content: center;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: box-shadow 0.3s ease;
+    /* จัดให้เนื้อหาในการ์ดอยู่ตรงกลาง */
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card__header h2 {
+    margin: 0;
+    font-family: 'Mitr', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--accent-2);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    border: 0;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--accent), #42a5f5);
+    border-radius: 10px;
+    padding: 0.55rem 1rem;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(30, 136, 229, 0.3);
+}
+
+.btn--ghost {
+    color: var(--text-main);
+    background: #f1f5f9;
+    box-shadow: none;
+}
+
+.btn--ghost:hover {
+    background: #e2e8f0;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn--sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+}
+
+/* ===== TABLE ===== */
+.table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    /* จัดตารางให้อยู่ตรงกลาง */
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+    /* จัดข้อความในตารางให้อยู่ตรงกลาง */
+    text-align: center;
+}
+
+th,
+td {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid #eef2f6;
+    font-size: 0.9rem;
+}
+
+/* จัดหัวตารางให้อยู่ตรงกลาง */
+th {
+    text-align: center;
+    color: var(--text-blue);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    background: #f8fafc;
+}
+
+/* จัดเนื้อหาในตารางให้อยู่ตรงกลาง ยกเว้นคอลัมน์แรก (ชื่องาน) */
+td:first-child {
+    text-align: left;
+}
+
+tbody tr:hover {
+    background: #f8faff;
+}
+
+/* ===== STATUS PILLS ===== */
+.status-pill {
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+}
+
+.status-planned {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-in-progress {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-blocked {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.status-done {
+    background: #e0f2f1;
+    color: #00695c;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-track {
+    width: 100%;
+    height: 7px;
+    background: #eef2f6;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2px;
+    /* จัดให้อยู่ตรงกลาง */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #42a5f5);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* ===== CALENDAR ===== */
+.calendar-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.calendar-controls span {
+    font-weight: 400;
+    font-size: 0.95rem;
+    min-width: 150px;
+    text-align: center;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+    /* จัด grid ปฏิทินให้อยู่ตรงกลาง */
+    justify-content: center;
+}
+
+.day-cell {
+    min-height: 52px;
+    border-radius: 10px;
+    padding: 0.3rem;
+    background: #f8fafc;
+    font-size: 0.85rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.day-cell--head {
+    min-height: auto;
+    color: var(--text-sub);
+    font-weight: 600;
+    font-size: 0.75rem;
+    background: transparent;
+}
+
+.day-cell--muted {
+    opacity: 0.4;
+}
+
+.day-cell--today {
+    background: #e3f2fd;
+    outline: 2px solid var(--accent);
+    font-weight: 700;
+}
+
+.day-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--warn);
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.upcoming-list {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+    color: var(--text-blue);
+    font-size: 0.9rem;
+    list-style: circle;
+}
+
+.upcoming-list li {
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+}
+
+/* ===== TEAM SPLIT ===== */
+.split-grid {
+    display: grid;
+    gap: 0.7rem;    
+    /* จัด grid ให้อยู่ตรงกลาง */
+    justify-content: left;
+}
+
+.person-card {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 0.8rem;
+    border-left: 4px solid var(--accent);
+    transition: all 0.2s ease;
+    /* จัดข้อความให้อยู่ตรงกลาง */
+    text-align: center;
+}
+
+.person-card:hover {
+    background: #f0f4ff;
+}
+
+.person-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* ===== PIPELINE ===== */
+.pipeline {
+    display: grid;
+    gap: 0.8rem;
+    /* จัด pipeline ให้อยู่ตรงกลาง */
+    justify-content: center;
+}
+
+.pipeline-step {
+    border-left: 3px solid var(--accent-2);
+    padding-left: 0.8rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    /* จัดข้อความให้อยู่ตรงกลาง */
+    text-align: center;
+}
+
+.pipeline-step:hover {
+    border-left-color: var(--accent-2);
+    background: #f8faff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0 8px 8px 0;
+    margin-left: -3px;
+}
+
+.pipeline-step strong {
+    display: block;
+    color: var(--accent-2);
+}
+
+.pipeline-step span {
+    color: var(--text-blue);
+    font-size: 0.82rem;
+}
+
+/* ===== DIALOG ===== */
+.task-dialog {
+    border: 0;
+    border-radius: 18px;
+    padding: 0;
+    background: #ffffff;
+    color: var(--text-main);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    /* จัด dialog ให้อยู่ตรงกลางจอ */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.task-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+#taskForm {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.5rem;
+    min-width: min(90vw, 380px);
+    /* จัดเนื้อหาฟอร์มให้อยู่ตรงกลาง */
+    text-align: center;
+}
+
+#taskForm h3 {
+    font-family: 'Kanit', sans-serif;
+    color: var(--accent-2);
+    margin-bottom: 0.3rem;
+}
+
+#taskForm label {
+    display: grid;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    /* จัด label ให้อยู่ชิดซ้ายเพื่ออ่านง่าย */
+    text-align: left;
+}
+
+#taskForm input,
+#taskForm select {
+    border: 1px solid #e0e7ef;
+    background: #f8fafc;
+    color: var(--text-main);
+    border-radius: 8px;
+    padding: 0.55rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease;
+}
+
+#taskForm input:focus,
+#taskForm select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+}
+
+menu {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.3rem 0 0;
+    padding: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    :root {
+        --nav-width: 220px;
+    }
+
+    .navbar {
+        width: 220px;
+        padding: 1.5rem 1rem;
+    }
+
+    .layout-grid {
+        grid-template-columns: 1fr;
+        /* จัด grid 1 คอลัมน์ให้อยู่ตรงกลาง */
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .navbar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-section,
+    .nav-footer {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 1.2rem;
+        /* จัดให้อยู่ตรงกลางบนมือถือ */
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero__meta {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero__meta div {
+        flex: 1;
+    }
+
+    .app-shell {
+        /* จัด app shell ให้อยู่ตรงกลางบนมือถือ */
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+/* ===== TOKEN PROGRESS ===== */
+.token-progress-container {
+    margin: 1rem 0;
+    padding: 0 0.5rem;
+}
+
+.token-progress-bar {
+    display: flex;
+    height: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #eef2f6;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.token-used {
+    background: linear-gradient(135deg, #ef5350, #e53935);
+    transition: width 0.5s ease;
+}
+
+.token-reserved {
+    background: linear-gradient(135deg, #ffa726, #fb8c00);
+    transition: width 0.5s ease;
+}
+
+.token-remaining {
+    background: linear-gradient(135deg, #66bb6a, #43a047);
+    transition: width 0.5s ease;
+}
+
+.token-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.token-legend span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
