@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IVAO TH Flight Intelligence Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero glass">
+        <div class="hero__text">
+          <p class="badge">IVAO Thailand Flight Intelligence System</p>
+          <h1>Mission Planner & Team Dashboard</h1>
+          <p>
+            จัดการงานโครงการแบบเรียลไทม์ แบ่งหน้าที่ชัดเจน พร้อมปฏิทินและความคืบหน้า
+            ใช้งานได้ทันทีบน Vercel
+          </p>
+        </div>
+        <div class="hero__meta">
+          <div>
+            <span>อัปเดตล่าสุด</span>
+            <strong id="lastUpdated">-</strong>
+          </div>
+          <div>
+            <span>ความคืบหน้ารวม</span>
+            <strong id="overallProgressLabel">0%</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout-grid">
+        <section class="card glass" aria-labelledby="taskHeading">
+          <div class="card__header">
+            <h2 id="taskHeading">Task Board</h2>
+            <button id="addTaskBtn" class="btn">+ เพิ่มงาน</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>งาน</th>
+                  <th>ผู้รับผิดชอบ</th>
+                  <th>กำหนดส่ง</th>
+                  <th>สถานะ</th>
+                  <th>ความคืบหน้า</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="taskTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card glass" aria-labelledby="calendarHeading">
+          <div class="card__header">
+            <h2 id="calendarHeading">Calendar</h2>
+            <div class="calendar-controls">
+              <button id="prevMonthBtn" class="btn btn--ghost">◀</button>
+              <span id="calendarTitle"></span>
+              <button id="nextMonthBtn" class="btn btn--ghost">▶</button>
+            </div>
+          </div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+          <ul id="upcomingList" class="upcoming-list"></ul>
+        </section>
+
+        <section class="card glass" aria-labelledby="teamHeading">
+          <div class="card__header">
+            <h2 id="teamHeading">Team Workload</h2>
+          </div>
+          <div id="teamSplit" class="split-grid"></div>
+        </section>
+
+        <section class="card glass" aria-labelledby="pipelineHeading">
+          <div class="card__header">
+            <h2 id="pipelineHeading">Deployment Pipeline</h2>
+          </div>
+          <div id="pipelineList" class="pipeline"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="taskDialog" class="task-dialog">
+      <form id="taskForm" method="dialog">
+        <h3>เพิ่มงานใหม่</h3>
+        <label>
+          ชื่องาน
+          <input name="title" required maxlength="90" />
+        </label>
+        <label>
+          ผู้รับผิดชอบ
+          <input name="owner" required maxlength="40" />
+        </label>
+        <label>
+          กำหนดส่ง
+          <input name="dueDate" type="date" required />
+        </label>
+        <label>
+          ความคืบหน้า (%)
+          <input name="progress" type="number" min="0" max="100" required value="0" />
+        </label>
+        <label>
+          สถานะ
+          <select name="status" required>
+            <option value="Planned">Planned</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Blocked">Blocked</option>
+            <option value="Done">Done</option>
+          </select>
+        </label>
+        <menu>
+          <button value="cancel" class="btn btn--ghost" type="button" id="cancelDialogBtn">
+            ยกเลิก
+          </button>
+          <button value="default" class="btn" type="submit">บันทึกงาน</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
